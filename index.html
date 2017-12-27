@@ -5,6 +5,7 @@
 	<script src="names.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Amiri|Dancing+Script|Great+Vibes|Montserrat|Pacifico|Sacramento|Tangerine" rel="stylesheet">
 	<style type="text/css">
 
@@ -73,15 +74,35 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"></script>
 
 	<script>
-		 jQuery('body').click(function(){
-		 	var randomName = names[Math.floor(Math.random() * names.length)];
-		 	jQuery('.name').text(randomName);
-			jQuery("body").css('background-color',randomColor({hue: 'pink',luminosity: 'dark'}));		 	
-			jQuery(".name").fitText();
-		 });
+		var index = 1;
+		var guessedNames = [names[Math.floor(Math.random() * names.length)]];
+ 		var bodyElement = document.getElementsByTagName('body')[0];
+		var mc = new Hammer(bodyElement);
+	
+		mc.on("swiperight", function(ev) {
+		    index = Math.max(--index, 0);
+		    setName();
+		});
 
-		 jQuery('body').click();
-	 
+		mc.on("swipeleft", function(ev){
+			if(index == guessedNames.length){
+			 	guessedNames.push(names[Math.floor(Math.random() * names.length)]);
+			 	index++;
+			} else {
+				index++;
+			}
+
+			setName();
+		});
+
+		function setName(){
+			jQuery('.name').text(guessedNames[index-1]);
+			jQuery("body").css('background-color',randomColor({hue: 'pink',luminosity: 'dark'}));		 	
+			jQuery(".name").fitText();				
+		}
+	 	
+		setName();
+
 	</script>
 </body>
 </html>
