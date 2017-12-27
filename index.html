@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Name Generator</title>
+	<script src="names.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Amiri|Dancing+Script|Great+Vibes|Montserrat|Pacifico|Sacramento|Tangerine" rel="stylesheet">
+	<style type="text/css">
+
+		html,body{
+			height:100%;
+			width:100%;
+		}
+		div {
+			color: white;
+			mix-blend-mode: difference;
+			text-align: center;
+			width:50%;
+			height: 14%;
+			margin:0 auto;
+		  -webkit-touch-callout: none; /* iOS Safari */
+		    -webkit-user-select: none; /* Safari */
+		     -khtml-user-select: none; /* Konqueror HTML */
+		       -moz-user-select: none; /* Firefox */
+		        -ms-user-select: none; /* Internet Explorer/Edge */
+		            user-select: none; /* Non-prefixed version, currently
+		                                  supported by Chrome and Opera */			
+		}
+
+		.type-a {
+			font-family: 'Pacifico', cursive;
+		}
+
+		.type-b {
+			font-family: 'Montserrat', sans-serif;
+		}
+
+		.type-c {
+			font-family: 'Dancing Script', cursive;
+		}
+
+		.type-d {
+			font-family: 'Great Vibes', cursive;
+		}
+
+		.type-e {
+			font-family: 'Sacramento', cursive;
+		}
+
+		.type-f {
+			font-family: 'Tangerine', cursive;
+		}
+
+		.type-g {
+			font-family: 'Amiri', serif;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="name type-a">Test</div>
+	<div class="name type-b">Test</div>
+	<div class="name type-c">Test</div>
+	<div class="name type-d">Test</div>
+	<div class="name type-e">Test</div>
+	<div class="name type-f">Test</div>
+	<div class="name type-g">Test</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"></script>
+
+	<script>
+		 jQuery('body').click(function(){
+		 	var randomName = names[Math.floor(Math.random() * names.length)];
+		 	jQuery('.name').text(randomName);
+			jQuery("body").css('background-color',randomColor({hue: 'pink',luminosity: 'dark'}));		 	
+			jQuery(".name").fitText();
+		 });
+
+		 jQuery('body').click();
+	 
+	</script>
+</body>
+</html>
